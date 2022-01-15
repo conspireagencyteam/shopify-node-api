@@ -43,6 +43,7 @@ const ShopifyOAuth = {
     shop: string,
     redirectPath: string,
     isOnline = true,
+    app: string,
   ): Promise<string> {
     Context.throwIfUninitialized();
     Context.throwIfPrivateApp('Cannot perform OAuth for private apps');
@@ -59,6 +60,7 @@ const ShopifyOAuth = {
       shop,
       state,
       isOnline,
+      app
     );
 
     const sessionStored = await Context.SESSION_STORAGE.storeSession(session);

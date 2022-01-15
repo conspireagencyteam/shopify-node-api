@@ -10,4 +10,5 @@ export interface SessionInterface {
   accessToken?: string;
   onlineAccessInfo?: OnlineAccessInfo;
   isActive(): boolean;
+  app: string;
 }

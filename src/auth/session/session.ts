@@ -13,6 +13,7 @@ class Session implements SessionInterface {
       session.shop,
       session.state,
       session.isOnline,
+      session.app
     );
 
     newSession.scope = session.scope;
@@ -33,6 +34,7 @@ class Session implements SessionInterface {
     public shop: string,
     public state: string,
     public isOnline: boolean,
+    public app: string
   ) {}
 
   public isActive(): boolean {
