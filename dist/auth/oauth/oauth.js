@@ -42,7 +42,7 @@ var ShopifyOAuth = {
                             secure: true,
                         });
                         state = nonce_1.default();
-                        session = new session_1.Session(isOnline ? uuid_1.v4() : this.getOfflineSessionId(shop), shop, state, isOnline, app);
+                        session = new session_1.Session(isOnline ? uuid_1.v4() : this.getOfflineSessionId(shop, app), shop, state, isOnline, app);
                         return [4 /*yield*/, context_1.Context.SESSION_STORAGE.storeSession(session)];
                     case 1:
                         sessionStored = _a.sent();
@@ -189,8 +189,8 @@ var ShopifyOAuth = {
      *
      * @param shop Shopify shop domain
      */
-    getOfflineSessionId: function (shop) {
-        return "offline_" + shop;
+    getOfflineSessionId: function (shop, app) {
+        return "offline_" + app + "_" + shop;
     },
     /**
      * Extracts the current session id from the request / response pair.
@@ -199,7 +199,7 @@ var ShopifyOAuth = {
      * @param response HTTP response object
      * @param isOnline Whether to load online (default) or offline sessions (optional)
      */
-    getCurrentSessionId: function (request, response, isOnline) {
+    getCurrentSessionId: function (request, response, app, isOnline) {
         if (isOnline === void 0) { isOnline = true; }
         var currentSessionId;
         if (context_1.Context.IS_EMBEDDED_APP) {
@@ -215,7 +215,7 @@ var ShopifyOAuth = {
                     currentSessionId = this.getJwtSessionId(shop, jwtPayload.sub);
                 }
                 else {
-                    currentSessionId = this.getOfflineSessionId(shop);
+                    currentSessionId = this.getOfflineSessionId(shop, app);
                 }
             }
         }

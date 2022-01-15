@@ -4,13 +4,13 @@ var tslib_1 = require("tslib");
 var graphql_1 = require("../clients/graphql");
 var ShopifyErrors = tslib_1.__importStar(require("../error"));
 var load_current_session_1 = tslib_1.__importDefault(require("./load-current-session"));
-function graphqlProxy(userReq, userRes) {
+function graphqlProxy(userReq, userRes, app) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var session, shopName, token, reqBodyString, promise;
         var _this = this;
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, load_current_session_1.default(userReq, userRes)];
+                case 0: return [4 /*yield*/, load_current_session_1.default(userReq, userRes, app)];
                 case 1:
                     session = _a.sent();
                     if (!session) {

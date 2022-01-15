@@ -8,10 +8,11 @@ import OAuth from '../auth/oauth';
  */
 export default async function deleteOfflineSession(
   shop: string,
+  app: string,
 ): Promise<boolean> {
   Context.throwIfUninitialized();
 
-  const sessionId = OAuth.getOfflineSessionId(shop);
+  const sessionId = OAuth.getOfflineSessionId(shop, app);
 
   return Context.SESSION_STORAGE.deleteSession(sessionId);
 }

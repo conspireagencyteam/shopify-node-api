@@ -8,12 +8,12 @@ var oauth_1 = tslib_1.__importDefault(require("../auth/oauth"));
  *
  * @param shop the shop url to find and delete a session for
  */
-function deleteOfflineSession(shop) {
+function deleteOfflineSession(shop, app) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var sessionId;
         return tslib_1.__generator(this, function (_a) {
             context_1.Context.throwIfUninitialized();
-            sessionId = oauth_1.default.getOfflineSessionId(shop);
+            sessionId = oauth_1.default.getOfflineSessionId(shop, app);
             return [2 /*return*/, context_1.Context.SESSION_STORAGE.deleteSession(sessionId)];
         });
     });

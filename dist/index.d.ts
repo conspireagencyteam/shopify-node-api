@@ -8,8 +8,8 @@ export declare const Shopify: {
         validateAuthCallback(request: import("http").IncomingMessage, response: import("http").ServerResponse, query: import("./types").AuthQuery): Promise<import("./types").SessionInterface>;
         getCookieSessionId(request: import("http").IncomingMessage, response: import("http").ServerResponse): string | undefined;
         getJwtSessionId(shop: string, userId: string): string;
-        getOfflineSessionId(shop: string): string;
-        getCurrentSessionId(request: import("http").IncomingMessage, response: import("http").ServerResponse, isOnline?: boolean): string | undefined;
+        getOfflineSessionId(shop: string, app: string): string;
+        getCurrentSessionId(request: import("http").IncomingMessage, response: import("http").ServerResponse, app: string, isOnline?: boolean): string | undefined;
     };
     Session: {
         Session: typeof import("./auth/session/session").Session;

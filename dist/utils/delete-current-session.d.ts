@@ -7,5 +7,5 @@ import http from 'http';
  * @param response Current HTTP response
  * @param isOnline Whether to load online (default) or offline sessions (optional)
  */
-export default function deleteCurrentSession(request: http.IncomingMessage, response: http.ServerResponse, isOnline?: boolean): Promise<boolean | never>;
+export default function deleteCurrentSession(request: http.IncomingMessage, response: http.ServerResponse, app: string, isOnline?: boolean): Promise<boolean | never>;
 //# sourceMappingURL=delete-current-session.d.ts.map

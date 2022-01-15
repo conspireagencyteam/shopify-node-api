@@ -14,6 +14,7 @@ import * as ShopifyErrors from '../error';
 export default async function deleteCurrentSession(
   request: http.IncomingMessage,
   response: http.ServerResponse,
+  app: string,
   isOnline = true,
 ): Promise<boolean | never> {
   Context.throwIfUninitialized();
@@ -21,6 +22,7 @@ export default async function deleteCurrentSession(
   const sessionId = ShopifyOAuth.getCurrentSessionId(
     request,
     response,
+    app,
     isOnline,
   );
   if (!sessionId) {

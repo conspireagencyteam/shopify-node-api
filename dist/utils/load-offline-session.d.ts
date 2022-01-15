@@ -7,5 +7,5 @@ import { Session } from '../auth/session/session';
  * @param shop the shop url to find the offline session for
  * @param includeExpired optionally include expired sessions, defaults to false
  */
-export default function loadOfflineSession(shop: string, includeExpired?: boolean): Promise<Session | undefined>;
+export default function loadOfflineSession(shop: string, app: string, includeExpired?: boolean): Promise<Session | undefined>;
 //# sourceMappingURL=load-offline-session.d.ts.map

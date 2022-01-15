@@ -8,7 +8,7 @@ var context_1 = require("../context");
 var load_offline_session_1 = tslib_1.__importDefault(require("./load-offline-session"));
 var load_current_session_1 = tslib_1.__importDefault(require("./load-current-session"));
 function withSession(_a) {
-    var clientType = _a.clientType, isOnline = _a.isOnline, req = _a.req, res = _a.res, shop = _a.shop;
+    var clientType = _a.clientType, isOnline = _a.isOnline, req = _a.req, res = _a.res, shop = _a.shop, app = _a.app;
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var session, client;
         return tslib_1.__generator(this, function (_b) {
@@ -19,7 +19,7 @@ function withSession(_a) {
                     if (!req || !res) {
                         throw new ShopifyErrors.MissingRequiredArgument('Please pass in both the "request" and "response" objects.');
                     }
-                    return [4 /*yield*/, load_current_session_1.default(req, res)];
+                    return [4 /*yield*/, load_current_session_1.default(req, res, app)];
                 case 1:
                     session = _b.sent();
                     return [3 /*break*/, 4];
@@ -27,7 +27,7 @@ function withSession(_a) {
                     if (!shop) {
                         throw new ShopifyErrors.MissingRequiredArgument('Please pass in a value for "shop"');
                     }
-                    return [4 /*yield*/, load_offline_session_1.default(shop)];
+                    return [4 /*yield*/, load_offline_session_1.default(shop, app)];
                 case 3:
                     session = _b.sent();
                     _b.label = 4;

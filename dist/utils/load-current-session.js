@@ -10,13 +10,13 @@ var oauth_1 = require("../auth/oauth/oauth");
  * @param response Current HTTP response
  * @param isOnline Whether to load online (default) or offline sessions (optional)
  */
-function loadCurrentSession(request, response, isOnline) {
+function loadCurrentSession(request, response, app, isOnline) {
     if (isOnline === void 0) { isOnline = true; }
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var sessionId;
         return tslib_1.__generator(this, function (_a) {
             context_1.Context.throwIfUninitialized();
-            sessionId = oauth_1.ShopifyOAuth.getCurrentSessionId(request, response, isOnline);
+            sessionId = oauth_1.ShopifyOAuth.getCurrentSessionId(request, response, app, isOnline);
             if (!sessionId) {
                 return [2 /*return*/, Promise.resolve(undefined)];
             }

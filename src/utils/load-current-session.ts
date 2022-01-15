@@ -14,6 +14,7 @@ import {Session} from '../auth/session';
 export default async function loadCurrentSession(
   request: http.IncomingMessage,
   response: http.ServerResponse,
+  app: string,
   isOnline = true,
 ): Promise<Session | undefined> {
   Context.throwIfUninitialized();
@@ -21,6 +22,7 @@ export default async function loadCurrentSession(
   const sessionId = ShopifyOAuth.getCurrentSessionId(
     request,
     response,
+    app,
     isOnline,
   );
   if (!sessionId) {

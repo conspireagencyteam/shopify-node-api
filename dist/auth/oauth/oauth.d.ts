@@ -46,7 +46,7 @@ declare const ShopifyOAuth: {
      *
      * @param shop Shopify shop domain
      */
-    getOfflineSessionId(shop: string): string;
+    getOfflineSessionId(shop: string, app: string): string;
     /**
      * Extracts the current session id from the request / response pair.
      *
@@ -54,7 +54,7 @@ declare const ShopifyOAuth: {
      * @param response HTTP response object
      * @param isOnline Whether to load online (default) or offline sessions (optional)
      */
-    getCurrentSessionId(request: http.IncomingMessage, response: http.ServerResponse, isOnline?: boolean): string | undefined;
+    getCurrentSessionId(request: http.IncomingMessage, response: http.ServerResponse, app: string, isOnline?: boolean): string | undefined;
 };
 export { ShopifyOAuth };
 //# sourceMappingURL=oauth.d.ts.map

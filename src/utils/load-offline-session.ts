@@ -12,11 +12,12 @@ import OAuth from '../auth/oauth';
  */
 export default async function loadOfflineSession(
   shop: string,
+  app: string,
   includeExpired = false,
 ): Promise<Session | undefined> {
   Context.throwIfUninitialized();
 
-  const sessionId = OAuth.getOfflineSessionId(shop);
+  const sessionId = OAuth.getOfflineSessionId(shop, app);
   const session = await Context.SESSION_STORAGE.loadSession(sessionId);
 
   const now = new Date();

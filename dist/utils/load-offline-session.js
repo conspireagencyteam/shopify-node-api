@@ -11,7 +11,7 @@ var oauth_1 = tslib_1.__importDefault(require("../auth/oauth"));
  * @param shop the shop url to find the offline session for
  * @param includeExpired optionally include expired sessions, defaults to false
  */
-function loadOfflineSession(shop, includeExpired) {
+function loadOfflineSession(shop, app, includeExpired) {
     if (includeExpired === void 0) { includeExpired = false; }
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var sessionId, session, now;
@@ -19,7 +19,7 @@ function loadOfflineSession(shop, includeExpired) {
             switch (_a.label) {
                 case 0:
                     context_1.Context.throwIfUninitialized();
-                    sessionId = oauth_1.default.getOfflineSessionId(shop);
+                    sessionId = oauth_1.default.getOfflineSessionId(shop, app);
                     return [4 /*yield*/, context_1.Context.SESSION_STORAGE.loadSession(sessionId)];
                 case 1:
                     session = _a.sent();

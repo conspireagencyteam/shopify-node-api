@@ -56,11 +56,11 @@ const ShopifyOAuth = {
     const state = nonce();
 
     const session = new Session(
-      isOnline ? uuidv4() : this.getOfflineSessionId(shop),
+      isOnline ? uuidv4() : this.getOfflineSessionId(shop, app),
       shop,
       state,
       isOnline,
-      app
+      app,
     );
 
     const sessionStored = await Context.SESSION_STORAGE.storeSession(session);
@@ -175,7 +175,9 @@ const ShopifyOAuth = {
         );
         const jwtSession = Session.cloneSession(currentSession, jwtSessionId);
 
-        const sessionDeleted = await Context.SESSION_STORAGE.deleteSession(currentSession.id);
+        const sessionDeleted = await Context.SESSION_STORAGE.deleteSession(
+          currentSession.id,
+        );
         if (!sessionDeleted) {
           throw new ShopifyErrors.SessionStorageError(
             'OAuth Session could not be deleted. Please check your session storage functionality.',
@@ -197,7 +199,9 @@ const ShopifyOAuth = {
       secure: true,
     });
 
-    const sessionStored = await Context.SESSION_STORAGE.storeSession(currentSession);
+    const sessionStored = await Context.SESSION_STORAGE.storeSession(
+      currentSession,
+    );
     if (!sessionStored) {
       throw new ShopifyErrors.SessionStorageError(
         'OAuth Session could not be saved. Please check your session storage functionality.',
@@ -239,8 +243,8 @@ const ShopifyOAuth = {
    *
    * @param shop Shopify shop domain
    */
-  getOfflineSessionId(shop: string): string {
-    return `offline_${shop}`;
+  getOfflineSessionId(shop: string, app: string): string {
+    return `offline_${app}_${shop}`;
   },
 
   /**
@@ -253,6 +257,7 @@ const ShopifyOAuth = {
   getCurrentSessionId(
     request: http.IncomingMessage,
     response: http.ServerResponse,
+    app: string,
     isOnline = true,
   ): string | undefined {
     let currentSessionId: string | undefined;
@@ -272,7 +277,7 @@ const ShopifyOAuth = {
         if (isOnline) {
           currentSessionId = this.getJwtSessionId(shop, jwtPayload.sub);
         } else {
-          currentSessionId = this.getOfflineSessionId(shop);
+          currentSessionId = this.getOfflineSessionId(shop, app);
         }
       }
     }

@@ -14,6 +14,7 @@ export default async function withSession({
   req,
   res,
   shop,
+  app,
 }: WithSessionParams): Promise<WithSessionResponse> {
   Context.throwIfUninitialized();
 
@@ -25,7 +26,7 @@ export default async function withSession({
       );
     }
 
-    session = await loadCurrentSession(req, res);
+    session = await loadCurrentSession(req, res, app);
   } else {
     if (!shop) {
       throw new ShopifyErrors.MissingRequiredArgument(
@@ -33,7 +34,7 @@ export default async function withSession({
       );
     }
 
-    session = await loadOfflineSession(shop);
+    session = await loadOfflineSession(shop, app);
   }
 
   if (!session) {

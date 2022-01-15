@@ -9,6 +9,7 @@ export interface WithSessionParams {
     req?: http.IncomingMessage;
     res?: http.ServerResponse;
     shop?: string;
+    app: string;
 }
 interface WithSessionBaseResponse {
     session: Session;
