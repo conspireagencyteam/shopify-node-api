@@ -48,6 +48,7 @@ export class CustomSessionStorage implements SessionStorage {
           result.shop as string,
           result.state as string,
           result.isOnline as boolean,
+          result.app as string,
         );
         session = {...session, ...(result as SessionInterface)};
 
